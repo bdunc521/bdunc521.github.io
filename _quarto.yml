@@ -24,6 +24,8 @@ website:
             href: projects/data-acquisition.qmd
           - text: "Final Project"
             href: projects/final-project.qmd
+          - text: "Linear Regression Tutorial"
+            href: projects/linear_regression_tutorial.qmd
     right:
       - icon: github
         href: https://github.com/your-username
@@ -37,6 +39,7 @@ website:
         - projects/eda.qmd
         - projects/data-acquisition.qmd
         - projects/final-project.qmd
+        - projects/linear_regression_tutorial.qmd
 
 format:
   html:

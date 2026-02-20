@@ -1,0 +1,24 @@
+---
+title: "Linear Regression Tutorial"
+author: "Brody Duncan"
+date: "2026-02-18"
+format:
+  html:
+    code-fold: true
+    toc: true
+---
+### Purpose
+
+Linear regression is an essential tool for any statistician, data scientist, or machine learning practitioner. Linear regression is used to model the relationship between a dependent variable and one or more independent variables. Linear regression can be used:
+- to make future predictions 
+- understand the strength of relationships between variables
+- identify trends in data. 
+This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing pricing and size (in square feet) of houses in California will be used. The goal of this tutorial is to predict the price of a house based on its size.
+
+### Import necessary libraries
+```{python}
+import pandas as pd
+from sklearn.datasets import fetch_california_housing
+```
+
+The libraries being used are pandas and sklearn. *Pandas* is a useful library for data modeling and analysis. *Sklearn* contains the dataset we will be using for this tutorial.

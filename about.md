@@ -1,48 +1,39 @@
 ---
 title: "About Me"
 ---
+# Brody Duncan
 
-## Background
+### Introduction
+I am a university student studying data science. I’m interested in how data, policy, and real‑world decision‑making intersect. I am especially interested in legal analytics, a cross-section between statistics and the legal industry. I plan to attend law school after completing my undergraduate degree. 
 
-Write a brief introduction about yourself here. Include:
+### Education
+- Brigham Young University
+- B.S in Statistics; empahasis in data science
+- Expected graduation: April 2027
 
-- Your academic background
-- Your interest in data science
-- Your career goals
-- Any relevant experience or projects
+### Experience
+- **Freshman Mentor** for the Office of First Year Experience at BYU
+    - Guide current university freshman their first year and help them understand available resources
+- **Past positions:** 
+    - Catering staff for BYU dining services
+    - Assistant supervisor of merchandise at SeaWorld, San Antonio
+- Volunteer service at a local community food bank
 
-## Education
 
-- **[Your Degree]** - [University Name], [Year]
-- **Relevant Coursework**: Statistics, Data Analysis, Programming, etc.
+### Skills
+- Proficient in R for data analysis, wrangling, and modeling
+- Trained in Python for various basic tasks
+- Working proficiency in Spanish
+- Certified in various Microsoft programs (Excel, PowerPoint, Word)
+- Certified in Adobe Photoshop and Illustrator
+- Strong team player and leader from various job and extracurricular positions
 
-## Skills & Interests
 
-### Technical Skills
-- **Programming**: Python
-- **Data Analysis**: Pandas, NumPy
-- **Visualization**: Matplotlib, Seaborn
-- **Machine Learning**: Scikit-learn
-- **Tools**: Jupyter Notebooks, Git/GitHub
+### Get to Know Me
+I come from quite a large family, as I grew up with 5 brothers. All of my free time growing up was spent around my family finding whatever we could to entertain ourselves.
 
-### Areas of Interest
-- [Your specific interests, e.g., environmental data, healthcare analytics, finance, etc.]
-- [Other areas you're curious about]
+I really enjoy playing strategy games, especially board games. I am currently engaged and going to get married this June.
 
-## Goals
 
-Describe what you hope to achieve through your data science journey:
-
-- Short-term learning objectives
-- Long-term career aspirations
-- Types of problems you want to solve
-
-## Contact
-
-- **Email**: your.email@example.com
-- **GitHub**: [github.com/your-username](https://github.com/your-username)
-- **LinkedIn**: [linkedin.com/in/your-profile](https://linkedin.com/in/your-profile)
-
----
-
-*This portfolio showcases my learning progress and projects completed during my data science studies.*
+### Headshot
+![Headshot of Brody Duncan](profile_pic.png)
