@@ -7,7 +7,7 @@ website:
   description: "A look at my data science projects, skills, and experience."
 
 execute:
-  python: .venv/Scripts/python.exe
+  python: uv run python
   
   navbar:
     background: primary
