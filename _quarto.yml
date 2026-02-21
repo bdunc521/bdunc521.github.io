@@ -3,8 +3,11 @@ project:
   output-dir: docs
 
 website:
-  title: "Your Name - Data Science Portfolio"
-  description: "A showcase of my data science projects and learning journey"
+  title: "Brody Duncan's Data Science Portfolio"
+  description: "A look at my data science projects, skills, and experience."
+
+execute:
+  python: .venv/Scripts/python.exe
   
   navbar:
     background: primary

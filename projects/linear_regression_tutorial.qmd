@@ -10,15 +10,40 @@ format:
 ### Purpose
 
 Linear regression is an essential tool for any statistician, data scientist, or machine learning practitioner. Linear regression is used to model the relationship between a dependent variable and one or more independent variables. Linear regression can be used:
-- to make future predictions 
-- understand the strength of relationships between variables
-- identify trends in data. 
-This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing pricing and size (in square feet) of houses in California will be used. The goal of this tutorial is to predict the price of a house based on its size.
 
-### Import necessary libraries
+* to make future predictions based on historical data
+* to understand the strength of relationships between variables
+* to identify trends in data 
+
+This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing housing prices in California and the resident's income will be used. The goal of this tutorial is to predict the price of a house based on the resident's income.
+
+### Prepping the Data
+##### Import Necessary Libraries
+The libraries being used are *pandas*, *matplotlib*, and *sklearn*. *Pandas* is a useful library for creating dataframes and analysis. *Matplotlib* is used for creating data visualizations.*Sklearn* contains the dataset we will be using for this tutorial.
+
 ```{python}
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.datasets import fetch_california_housing
 ```
+Ensure the following libraries are installed in your Python environment by using the command `pip install pandas matplotlib scikit-learn` in your terminal.
 
-The libraries being used are pandas and sklearn. *Pandas* is a useful library for data modeling and analysis. *Sklearn* contains the dataset we will be using for this tutorial.
+##### Load the Dataset
+Sklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:
+```{python}
+df = fetch_california_housing(as_frame=True).frame
+```
+`as_frame = True` combined with `.frame` allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns `MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal`. For this tutorial we will be using **MedInc** (the median income for California districts) to predict **MedHouseVal** (the median house value for California districts). To isolate these two columns, we can use the following code:
+```{python}
+x = df[["MedInc"]]    # Will be mapped on the x-axis(independent variable)
+y = df["MedHouseVal"]   # Will be mapped on the y-axis(dependent variable)
+```
+### Exploratory Data Analysis
+Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:
+```{python}
+plt.scatter(x, y)
+plt.xlabel("Median Income")
+plt.ylabel("Median House Value")
+plt.title("Scatter Plot of Average Number of Rooms vs. Median House Value")
+plt.show()
+```
