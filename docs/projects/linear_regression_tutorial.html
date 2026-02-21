@@ -61,6 +61,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
@@ -76,13 +77,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-029b10fc0dc652dab2ec1ac156c1a037.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -138,12 +139,128 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Brody Duncan’s Data Science Portfolio</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About Me</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-projects" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Projects</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
+        <li>
+    <a class="dropdown-item" href="../projects/index.html">
+ <span class="dropdown-text">All Projects</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li>
+    <a class="dropdown-item" href="../projects/eda.html">
+ <span class="dropdown-text">Exploratory Data Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects/data-acquisition.html">
+ <span class="dropdown-text">Data Acquisition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects/final-project.html">
+ <span class="dropdown-text">Final Project</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projects/linear_regression_tutorial.html">
+ <span class="dropdown-text">Linear Regression Tutorial</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/your-username"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://linkedin.com/in/your-profile"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../projects/linear_regression_tutorial.html">Linear Regression Tutorial</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Projects Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EDA Project</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/data-acquisition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data Acquisition Project</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final Project</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../projects/linear_regression_tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Linear Regression Tutorial</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -214,7 +331,7 @@ window.Quarto = {
 <li><em>Sklearn</em> contains the dataset we will be using for this tutorial. We will use the California Housing dataset available through sklearn’s fetch_california_housing() function.</li>
 </ul>
 <p>To import these libraries, use the following code:</p>
-<div id="f5543a3c" class="cell" data-execution_count="1">
+<div id="0f181d39" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -227,14 +344,14 @@ window.Quarto = {
 <section id="load-the-dataset" class="level5">
 <h5 class="anchored" data-anchor-id="load-the-dataset">Load the Dataset</h5>
 <p>Sklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:</p>
-<div id="0a4ee271" class="cell" data-execution_count="2">
+<div id="297fe6e2" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> fetch_california_housing(as_frame<span class="op">=</span><span class="va">True</span>).frame</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><code>as_frame = True</code> combined with <code>.frame</code> allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns <code>MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal</code>. For this tutorial we will be using <strong>MedInc</strong> (the median income for California districts in tens of thousands of dollars) to predict <strong>MedHouseVal</strong> (the median house value for California districts in hundreds of thousands of dollars). To isolate these two columns, we can use the following code:</p>
-<div id="f252f28d" class="cell" data-execution_count="3">
+<div id="3cc99f2c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"MedInc"</span>]    <span class="co"># Will be mapped on the x-axis(independent variable)</span></span>
@@ -247,7 +364,7 @@ window.Quarto = {
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 <p>Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:</p>
-<div id="e7b3315f" class="cell" data-execution_count="4">
+<div id="eed5f7c3" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
@@ -269,7 +386,7 @@ window.Quarto = {
 <section id="building-a-linear-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="building-a-linear-regression-model">Building a Linear Regression Model</h3>
 <p>Luckily, the equation for a linear regression model is simple. The equation is <em>y = mx + b</em> where <em>m</em> is the slope of the line and <em>b</em> is the y-intercept. To find the values of <em>m</em> and <em>b</em>, we can use the <code>NumPy polyfit()</code> function. This function will take the x and y values of every data point and calculate the best fit line. We can do this using the following code to display the previous scatterplot and then draw a line of best fit in red on top of it:</p>
-<div id="1ff34c8e" class="cell" data-execution_count="5">
+<div id="96204313" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>) </span>
@@ -298,7 +415,7 @@ window.Quarto = {
 <section id="r2-value" class="level4">
 <h4 class="anchored" data-anchor-id="r2-value"><span class="math inline">\(R^2\)</span> Value</h4>
 <p>Unfortunately, the line of best fit is not perfect and often does not perfectly capture the relationship between variables. The <span class="math inline">\(R^2\)</span> value is a measure of how well the line of best fit captures the relationship between the independent and dependent variable. The <span class="math inline">\(R^2\)</span> value ranges from 0 to 1, where a value of 1 indicates that the line of best fit perfectly captures the relationship between the variables, and a value of 0 indicates that the line of best fit does not capture any of the relationship between the variables. We will calculate the <span class="math inline">\(R^2\)</span> value using the following code:</p>
-<div id="d8e739bb" class="cell" data-execution_count="6">
+<div id="db1271c6" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ss_total <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> np.mean(y))<span class="op">**</span><span class="dv">2</span>)</span>

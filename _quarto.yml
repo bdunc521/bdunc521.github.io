@@ -6,9 +6,6 @@ website:
   title: "Brody Duncan's Data Science Portfolio"
   description: "A look at my data science projects, skills, and experience."
 
-execute:
-  python: uv run python
-  
   navbar:
     background: primary
     left:
@@ -43,6 +40,9 @@ execute:
         - projects/data-acquisition.qmd
         - projects/final-project.qmd
         - projects/linear_regression_tutorial.qmd
+
+execute:
+  python: uv run python
 
 format:
   html:
