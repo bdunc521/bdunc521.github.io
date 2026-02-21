@@ -317,6 +317,7 @@ window.Quarto = {
 <li>to understand the strength of relationships between variables</li>
 <li>to identify trends in data</li>
 </ul>
+<p>As the tutorial progresses, we will see how to build a simple linear regression model in Python and use it to make predictions. We will also evaluate the performance of the model using the <span class="math inline">\(R^2\)</span> value.</p>
 <p>This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing housing prices in California and the residents’ income will be used. The goal of this tutorial is to predict the price of a house based on the residents’ income.</p>
 </section>
 <section id="preparing-the-data" class="level3">
@@ -331,7 +332,7 @@ window.Quarto = {
 <li><em>Sklearn</em> contains the dataset we will be using for this tutorial. We will use the California Housing dataset available through sklearn’s fetch_california_housing() function.</li>
 </ul>
 <p>To import these libraries, use the following code:</p>
-<div id="1bac1b8d" class="cell" data-execution_count="1">
+<div id="28a09b3d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -344,14 +345,14 @@ window.Quarto = {
 <section id="load-the-dataset" class="level5">
 <h5 class="anchored" data-anchor-id="load-the-dataset">Load the Dataset</h5>
 <p>Sklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:</p>
-<div id="3cd9be6a" class="cell" data-execution_count="2">
+<div id="8329b690" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> fetch_california_housing(as_frame<span class="op">=</span><span class="va">True</span>).frame</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><code>as_frame = True</code> combined with <code>.frame</code> allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns <code>MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal</code>. For this tutorial we will be using <strong>MedInc</strong> (the median income for California districts in tens of thousands of dollars) to predict <strong>MedHouseVal</strong> (the median house value for California districts in hundreds of thousands of dollars). To isolate these two columns, we can use the following code:</p>
-<div id="40f1ffca" class="cell" data-execution_count="3">
+<div id="7ab466c9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"MedInc"</span>]    <span class="co"># Will be mapped on the x-axis(independent variable)</span></span>
@@ -364,7 +365,7 @@ window.Quarto = {
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 <p>Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:</p>
-<div id="cb188a93" class="cell" data-execution_count="4">
+<div id="7775d13a" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
@@ -386,13 +387,13 @@ window.Quarto = {
 <section id="building-a-linear-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="building-a-linear-regression-model">Building a Linear Regression Model</h3>
 <p>Luckily, the equation for a linear regression model is simple. The equation is <em>y = mx + b</em> where <em>m</em> is the slope of the line and <em>b</em> is the y-intercept. To find the values of <em>m</em> and <em>b</em>, we can use the <code>NumPy polyfit()</code> function. This function will take the x and y values of every data point and calculate the best fit line. We can do this using the following code to display the previous scatterplot and then draw a line of best fit in red on top of it:</p>
-<div id="c4a6481a" class="cell" data-execution_count="5">
+<div id="fcdddd16" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>) </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.5</span>) </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) </span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">5</span>)</span>
@@ -415,7 +416,7 @@ window.Quarto = {
 <section id="r2-value" class="level4">
 <h4 class="anchored" data-anchor-id="r2-value"><span class="math inline">\(R^2\)</span> Value</h4>
 <p>Unfortunately, the line of best fit is not perfect and often does not perfectly capture the relationship between variables. The <span class="math inline">\(R^2\)</span> value is a measure of how well the line of best fit captures the relationship between the independent and dependent variable. The <span class="math inline">\(R^2\)</span> value ranges from 0 to 1, where a value of 1 indicates that the line of best fit perfectly captures the relationship between the variables, and a value of 0 indicates that the line of best fit does not capture any of the relationship between the variables. We will calculate the <span class="math inline">\(R^2\)</span> value using the following code:</p>
-<div id="b89315bf" class="cell" data-execution_count="6">
+<div id="2e4c96d3" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ss_total <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> np.mean(y))<span class="op">**</span><span class="dv">2</span>)</span>
@@ -432,7 +433,7 @@ window.Quarto = {
 </section>
 <section id="conclusion" class="level3">
 <h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>In this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.</p>
+<p>In this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Linear modeling can become a very powerful tool in your arsenal of data science techniques. It can easily be expanded to account for multiple independent variables to further improve the model’s performance. Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.</p>
 <section id="notes" class="level5">
 <h5 class="anchored" data-anchor-id="notes">Notes</h5>
 <ul>
@@ -915,82 +916,86 @@ window.Quarto = {
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>to understand the strength of relationships between variables</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>to identify trends in data </span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing housing prices in California and the residents' income will be used. The goal of this tutorial is to predict the price of a house based on the residents' income.</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>As the tutorial progresses, we will see how to build a simple linear regression model in Python and use it to make predictions. We will also evaluate the performance of the model using the $R^2$ value. </span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preparing the Data</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Import Necessary Libraries</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>The libraries being used are *pandas*, *matplotlib*, *NumPy*, and *sklearn*. It may seem like a lot of libraries, but each one serves a specific purpose and will make the process much easier.</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Pandas* is a useful library for creating dataframes and analysis. </span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Matplotlib* is used for creating data visualizations.</span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*NumPy* is used for numerical operations and calculations.</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Sklearn* contains the dataset we will be using for this tutorial. We will use the California Housing dataset available through sklearn’s fetch_california_housing() function.</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>To import these libraries, use the following code:</span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing housing prices in California and the residents' income will be used. The goal of this tutorial is to predict the price of a house based on the residents' income.</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Preparing the Data</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Import Necessary Libraries</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>The libraries being used are *pandas*, *matplotlib*, *NumPy*, and *sklearn*. It may seem like a lot of libraries, but each one serves a specific purpose and will make the process much easier.</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Pandas* is a useful library for creating dataframes and analysis. </span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Matplotlib* is used for creating data visualizations.</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*NumPy* is used for numerical operations and calculations.</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>*Sklearn* contains the dataset we will be using for this tutorial. We will use the California Housing dataset available through sklearn’s fetch_california_housing() function.</span>
 <span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>Ensure the following libraries are installed in your Python environment by using the command <span class="in">`pip install pandas matplotlib scikit-learn`</span> in your terminal.</span>
-<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Load the Dataset</span></span>
-<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>Sklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:</span>
-<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> fetch_california_housing(as_frame<span class="op">=</span><span class="va">True</span>).frame</span>
-<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="in">`as_frame = True`</span> combined with <span class="in">`.frame`</span> allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns <span class="in">`MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal`</span>. For this tutorial we will be using **MedInc** (the median income for California districts in tens of thousands of dollars) to predict **MedHouseVal** (the median house value for California districts in hundreds of thousands of dollars). To isolate these two columns, we can use the following code:</span>
-<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"MedInc"</span>]    <span class="co"># Will be mapped on the x-axis(independent variable)</span></span>
-<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"MedHouseVal"</span>]   <span class="co"># Will be mapped on the y-axis(dependent variable)</span></span>
-<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Data Analysis</span></span>
-<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:</span>
-<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
-<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
-<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
-<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter Plot of Median Income vs. Median House Value"</span>)</span>
-<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>This scatterplot shows a positive relationship between median income and median house value. As the median income increases, the median house value also tends to increase. This suggests that a linear regression model may be appropriate for modeling this relationship. Because of this, we can move forward with building a linear regression model to predict median house value based on median income.</span>
-<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Building a Linear Regression Model</span></span>
-<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>Luckily, the equation for a linear regression model is simple. The equation is *y = mx + b* where *m* is the slope of the line and *b* is the y-intercept. To find the values of *m* and *b*, we can use the <span class="in">`NumPy polyfit()`</span> function. This function will take the x and y values of every data point and calculate the best fit line. We can do this using the following code to display the previous scatterplot and then draw a line of best fit in red on top of it:</span>
-<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>) </span>
-<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
-<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) </span>
-<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
-<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
-<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">5</span>)</span>
-<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter Plot of Median Income vs. Median House Value"</span>)</span>
-<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_pred, color<span class="op">=</span><span class="st">"red"</span>) <span class="co"># Plot the line of best fit</span></span>
-<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Predictions</span></span>
-<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>The line of best fit can be used to show general trends in the data and make predictions. For example, if we wanted to make an estimate of the median house value for a district with a median income of $50,000, we could simply use the code :<span class="in">`slope * 5 + intercept`</span>. This returns a value of approximately 2.54. This means that based on the linear regression model we built, we would predict that the median house value for a district with a median income of $50,000 would be around $254,000.</span>
-<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a><span class="fu">#### $R^2$ Value</span></span>
-<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>Unfortunately, the line of best fit is not perfect and often does not perfectly capture the relationship between variables. The $R^2$ value is a measure of how well the line of best fit captures the relationship between the independent and dependent variable. The $R^2$ value ranges from 0 to 1, where a value of 1 indicates that the line of best fit perfectly captures the relationship between the variables, and a value of 0 indicates that the line of best fit does not capture any of the relationship between the variables. We will calculate the $R^2$ value using the following code:</span>
-<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>ss_total <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> np.mean(y))<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>ss_residual <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> y_pred)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_residual <span class="op">/</span> ss_total)</span>
-<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r2)</span>
-<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a>The $R^2$ value for this model is approximately *0.4734*. We interpret this as the line of best fit explains about 47% of the variance in median house value between median income and median house value. This shows there is still a lot of variability in the data. A $R^2$ value of 0.4734 is not very good, but it is not terrible either.</span>
-<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conclusion</span></span>
-<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a>In this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.</span>
-<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Notes</span></span>
-<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The dataset used comes from a 1990s census taken in California</span>
-<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The dataset caps out at a median house value of $500,000, which is why the y-axis in the scatterplot is limited to 5 (in hundreds of thousands of dollars), likely due to the way the census data was collected.</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>To import these libraries, use the following code:</span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_california_housing</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>Ensure the following libraries are installed in your Python environment by using the command <span class="in">`pip install pandas matplotlib scikit-learn`</span> in your terminal.</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Load the Dataset</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>Sklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> fetch_california_housing(as_frame<span class="op">=</span><span class="va">True</span>).frame</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a><span class="in">`as_frame = True`</span> combined with <span class="in">`.frame`</span> allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns <span class="in">`MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal`</span>. For this tutorial we will be using **MedInc** (the median income for California districts in tens of thousands of dollars) to predict **MedHouseVal** (the median house value for California districts in hundreds of thousands of dollars). To isolate these two columns, we can use the following code:</span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"MedInc"</span>]    <span class="co"># Will be mapped on the x-axis(independent variable)</span></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"MedHouseVal"</span>]   <span class="co"># Will be mapped on the y-axis(dependent variable)</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Data Analysis</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter Plot of Median Income vs. Median House Value"</span>)</span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>This scatterplot shows a positive relationship between median income and median house value. As the median income increases, the median house value also tends to increase. This suggests that a linear regression model may be appropriate for modeling this relationship. Because of this, we can move forward with building a linear regression model to predict median house value based on median income.</span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Building a Linear Regression Model</span></span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>Luckily, the equation for a linear regression model is simple. The equation is *y = mx + b* where *m* is the slope of the line and *b* is the y-intercept. To find the values of *m* and *b*, we can use the <span class="in">`NumPy polyfit()`</span> function. This function will take the x and y values of every data point and calculate the best fit line. We can do this using the following code to display the previous scatterplot and then draw a line of best fit in red on top of it:</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>) </span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) </span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">5</span>)</span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter Plot of Median Income vs. Median House Value"</span>)</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_pred, color<span class="op">=</span><span class="st">"red"</span>) <span class="co"># Plot the line of best fit</span></span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Predictions</span></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>The line of best fit can be used to show general trends in the data and make predictions. For example, if we wanted to make an estimate of the median house value for a district with a median income of $50,000, we could simply use the code :<span class="in">`slope * 5 + intercept`</span>. This returns a value of approximately 2.54. This means that based on the linear regression model we built, we would predict that the median house value for a district with a median income of $50,000 would be around $254,000.</span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a><span class="fu">#### $R^2$ Value</span></span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>Unfortunately, the line of best fit is not perfect and often does not perfectly capture the relationship between variables. The $R^2$ value is a measure of how well the line of best fit captures the relationship between the independent and dependent variable. The $R^2$ value ranges from 0 to 1, where a value of 1 indicates that the line of best fit perfectly captures the relationship between the variables, and a value of 0 indicates that the line of best fit does not capture any of the relationship between the variables. We will calculate the $R^2$ value using the following code:</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>ss_total <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> np.mean(y))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>ss_residual <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> y_pred)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>r2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (ss_residual <span class="op">/</span> ss_total)</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r2)</span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a>The $R^2$ value for this model is approximately *0.4734*. We interpret this as the line of best fit explains about 47% of the variance in median house value between median income and median house value. This shows there is still a lot of variability in the data. A $R^2$ value of 0.4734 is not very good, but it is not terrible either.</span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a><span class="fu">### Conclusion</span></span>
+<span id="cb8-102"><a href="#cb8-102" aria-hidden="true" tabindex="-1"></a>In this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Linear modeling can become a very powerful tool in your arsenal of data science techniques. It can easily be expanded to account for multiple independent variables to further improve the model's performance.</span>
+<span id="cb8-103"><a href="#cb8-103" aria-hidden="true" tabindex="-1"></a>Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.</span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Notes</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The dataset used comes from a 1990s census taken in California</span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The dataset caps out at a median house value of $500,000, which is why the y-axis in the scatterplot is limited to 5 (in hundreds of thousands of dollars), likely due to the way the census data was collected.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

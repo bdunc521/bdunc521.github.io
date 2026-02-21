@@ -15,6 +15,8 @@ Linear regression is an essential tool for any statistician, data scientist, or 
 * to understand the strength of relationships between variables
 * to identify trends in data 
 
+As the tutorial progresses, we will see how to build a simple linear regression model in Python and use it to make predictions. We will also evaluate the performance of the model using the $R^2$ value. 
+
 This tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing housing prices in California and the residents' income will be used. The goal of this tutorial is to predict the price of a house based on the residents' income.
 
 ### Preparing the Data
@@ -85,7 +87,9 @@ print(r2)
 The $R^2$ value for this model is approximately *0.4734*. We interpret this as the line of best fit explains about 47% of the variance in median house value between median income and median house value. This shows there is still a lot of variability in the data. A $R^2$ value of 0.4734 is not very good, but it is not terrible either.
 
 ### Conclusion
-In this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.
+In this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Linear modeling can become a very powerful tool in your arsenal of data science techniques. It can easily be expanded to account for multiple independent variables to further improve the model's performance.
+Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.
+
 
 
 ##### Notes
