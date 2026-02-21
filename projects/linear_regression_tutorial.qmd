@@ -49,7 +49,7 @@ y = df["MedHouseVal"]   # Will be mapped on the y-axis(dependent variable)
 ### Exploratory Data Analysis
 Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:
 ```{python}
-plt.scatter(x, y, alpha = 0.5) # alpha is used to make the points more transparent
+plt.scatter(x, y, alpha = 0.3) # alpha is used to make the points more transparent
 plt.xlabel("Median Income (in tens of thousands of dollars)")
 plt.ylabel("Median House Value (in hundreds of thousands of dollars)")
 plt.title("Scatter Plot of Median Income vs. Median House Value")
@@ -63,7 +63,7 @@ Luckily, the equation for a linear regression model is simple. The equation is *
 slope, intercept = np.polyfit(x, y, 1) 
 y_pred = slope * x + intercept
 
-plt.scatter(x, y)
+plt.scatter(x, y, alpha = 0.3) 
 plt.xlabel("Median Income (in tens of thousands of dollars)")
 plt.ylabel("Median House Value (in hundreds of thousands of dollars)")
 plt.ylim(0,5)

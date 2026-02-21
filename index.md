@@ -38,6 +38,11 @@ See how I gather data from different sources and prepare it for analysis.
 :::
 
 ::: {.g-col-6}
+### [Linear Regression Tutorial](projects/linear_regression_tutorial.qmd)
+See how I tackle a data science project beginning to end.
+:::
+
+::: {.g-col-6}
 ### [Final Project](projects/final-project.qmd)
 See how I tackle a data science project beginning to end.
 :::

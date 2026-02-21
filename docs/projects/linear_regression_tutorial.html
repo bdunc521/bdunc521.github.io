@@ -331,7 +331,7 @@ window.Quarto = {
 <li><em>Sklearn</em> contains the dataset we will be using for this tutorial. We will use the California Housing dataset available through sklearn’s fetch_california_housing() function.</li>
 </ul>
 <p>To import these libraries, use the following code:</p>
-<div id="0f181d39" class="cell" data-execution_count="1">
+<div id="1bac1b8d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -344,14 +344,14 @@ window.Quarto = {
 <section id="load-the-dataset" class="level5">
 <h5 class="anchored" data-anchor-id="load-the-dataset">Load the Dataset</h5>
 <p>Sklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:</p>
-<div id="297fe6e2" class="cell" data-execution_count="2">
+<div id="3cd9be6a" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> fetch_california_housing(as_frame<span class="op">=</span><span class="va">True</span>).frame</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p><code>as_frame = True</code> combined with <code>.frame</code> allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns <code>MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal</code>. For this tutorial we will be using <strong>MedInc</strong> (the median income for California districts in tens of thousands of dollars) to predict <strong>MedHouseVal</strong> (the median house value for California districts in hundreds of thousands of dollars). To isolate these two columns, we can use the following code:</p>
-<div id="3cc99f2c" class="cell" data-execution_count="3">
+<div id="40f1ffca" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> df[<span class="st">"MedInc"</span>]    <span class="co"># Will be mapped on the x-axis(independent variable)</span></span>
@@ -364,10 +364,10 @@ window.Quarto = {
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 <p>Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:</p>
-<div id="eed5f7c3" class="cell" data-execution_count="4">
+<div id="cb188a93" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter Plot of Median Income vs. Median House Value"</span>)</span>
@@ -386,13 +386,13 @@ window.Quarto = {
 <section id="building-a-linear-regression-model" class="level3">
 <h3 class="anchored" data-anchor-id="building-a-linear-regression-model">Building a Linear Regression Model</h3>
 <p>Luckily, the equation for a linear regression model is simple. The equation is <em>y = mx + b</em> where <em>m</em> is the slope of the line and <em>b</em> is the y-intercept. To find the values of <em>m</em> and <em>b</em>, we can use the <code>NumPy polyfit()</code> function. This function will take the x and y values of every data point and calculate the best fit line. We can do this using the following code to display the previous scatterplot and then draw a line of best fit in red on top of it:</p>
-<div id="96204313" class="cell" data-execution_count="5">
+<div id="c4a6481a" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>) </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.5</span>) </span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">5</span>)</span>
@@ -415,7 +415,7 @@ window.Quarto = {
 <section id="r2-value" class="level4">
 <h4 class="anchored" data-anchor-id="r2-value"><span class="math inline">\(R^2\)</span> Value</h4>
 <p>Unfortunately, the line of best fit is not perfect and often does not perfectly capture the relationship between variables. The <span class="math inline">\(R^2\)</span> value is a measure of how well the line of best fit captures the relationship between the independent and dependent variable. The <span class="math inline">\(R^2\)</span> value ranges from 0 to 1, where a value of 1 indicates that the line of best fit perfectly captures the relationship between the variables, and a value of 0 indicates that the line of best fit does not capture any of the relationship between the variables. We will calculate the <span class="math inline">\(R^2\)</span> value using the following code:</p>
-<div id="db1271c6" class="cell" data-execution_count="6">
+<div id="b89315bf" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ss_total <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> np.mean(y))<span class="op">**</span><span class="dv">2</span>)</span>
@@ -949,7 +949,7 @@ window.Quarto = {
 <span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="fu">### Exploratory Data Analysis</span></span>
 <span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>Before we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:</span>
 <span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.5</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) <span class="co"># alpha is used to make the points more transparent</span></span>
 <span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
 <span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
 <span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Scatter Plot of Median Income vs. Median House Value"</span>)</span>
@@ -963,7 +963,7 @@ window.Quarto = {
 <span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>slope, intercept <span class="op">=</span> np.polyfit(x, y, <span class="dv">1</span>) </span>
 <span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> slope <span class="op">*</span> x <span class="op">+</span> intercept</span>
 <span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, alpha <span class="op">=</span> <span class="fl">0.3</span>) </span>
 <span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Median Income (in tens of thousands of dollars)"</span>)</span>
 <span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Median House Value (in hundreds of thousands of dollars)"</span>)</span>
 <span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>,<span class="dv">5</span>)</span>
