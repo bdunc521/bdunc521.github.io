@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "projects/linear_regression_tutorial.html",
+    "href": "projects/linear_regression_tutorial.html",
+    "title": "Linear Regression Tutorial",
+    "section": "",
+    "text": "Purpose\nLinear regression is an essential tool for any statistician, data scientist, or machine learning practitioner. Linear regression is used to model the relationship between a dependent variable and one or more independent variables. Linear regression can be used:\n\nto make future predictions based on historical data\nto understand the strength of relationships between variables\nto identify trends in data\n\nThis tutorial will cover the basics of linear regression using Python. To demonstrate, a database containing housing prices in California and the residents’ income will be used. The goal of this tutorial is to predict the price of a house based on the residents’ income.\n\n\nPreparing the Data\n\nImport Necessary Libraries\nThe libraries being used are pandas, matplotlib, NumPy, and sklearn. It may seem like a lot of libraries, but each one serves a specific purpose and will make the process much easier.\n\nPandas is a useful library for creating dataframes and analysis.\nMatplotlib is used for creating data visualizations.\nNumPy is used for numerical operations and calculations.\nSklearn contains the dataset we will be using for this tutorial. We will use the California Housing dataset available through sklearn’s fetch_california_housing() function.\n\nTo import these libraries, use the following code:\n\n\nCode\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\nfrom sklearn.datasets import fetch_california_housing\n\n\nEnsure the following libraries are installed in your Python environment by using the command pip install pandas matplotlib scikit-learn in your terminal.\n\nLoad the Dataset\nSklearn datasets are normally in a NumPy arrays format. To make it easier to work with, we will convert the dataset into a pandas DataFrame. We will do this using the following code:\n\n\nCode\ndf = fetch_california_housing(as_frame=True).frame\n\n\nas_frame = True combined with .frame allows us to easily convert the NumPy array into a pandas DataFrame. Each row in this dataset represents one district in California. This dataset contains 9 columns MedInc, HouseAge, AveRooms, AveBedrms, Population, AveOccup, Latitude, Longitude, MedHouseVal. For this tutorial we will be using MedInc (the median income for California districts in tens of thousands of dollars) to predict MedHouseVal (the median house value for California districts in hundreds of thousands of dollars). To isolate these two columns, we can use the following code:\n\n\nCode\nx = df[\"MedInc\"]    # Will be mapped on the x-axis(independent variable)\ny = df[\"MedHouseVal\"]   # Will be mapped on the y-axis(dependent variable)\n\n\n\n\n\n\nExploratory Data Analysis\nBefore we can build a linear regression model, it is important to check if a linear model would be appropriate to model the relationship between the two variables. To do this, we can create a scatter plot of the data using the following code:\n\n\nCode\nplt.scatter(x, y, alpha = 0.5) # alpha is used to make the points more transparent\nplt.xlabel(\"Median Income (in tens of thousands of dollars)\")\nplt.ylabel(\"Median House Value (in hundreds of thousands of dollars)\")\nplt.title(\"Scatter Plot of Median Income vs. Median House Value\")\nplt.show()\n\n\n\n\n\n\n\n\n\nThis scatterplot shows a positive relationship between median income and median house value. As the median income increases, the median house value also tends to increase. This suggests that a linear regression model may be appropriate for modeling this relationship. Because of this, we can move forward with building a linear regression model to predict median house value based on median income.\n\n\nBuilding a Linear Regression Model\nLuckily, the equation for a linear regression model is simple. The equation is y = mx + b where m is the slope of the line and b is the y-intercept. To find the values of m and b, we can use the NumPy polyfit() function. This function will take the x and y values of every data point and calculate the best fit line. We can do this using the following code to display the previous scatterplot and then draw a line of best fit in red on top of it:\n\n\nCode\nslope, intercept = np.polyfit(x, y, 1) \ny_pred = slope * x + intercept\n\nplt.scatter(x, y)\nplt.xlabel(\"Median Income (in tens of thousands of dollars)\")\nplt.ylabel(\"Median House Value (in hundreds of thousands of dollars)\")\nplt.ylim(0,5)\nplt.title(\"Scatter Plot of Median Income vs. Median House Value\")\nplt.plot(x, y_pred, color=\"red\") # Plot the line of best fit\nplt.show()\n\n\n\n\n\n\n\n\n\n\nPredictions\nThe line of best fit can be used to show general trends in the data and make predictions. For example, if we wanted to make an estimate of the median house value for a district with a median income of $50,000, we could simply use the code :slope * 5 + intercept. This returns a value of approximately 2.54. This means that based on the linear regression model we built, we would predict that the median house value for a district with a median income of $50,000 would be around $254,000.\n\n\n\\(R^2\\) Value\nUnfortunately, the line of best fit is not perfect and often does not perfectly capture the relationship between variables. The \\(R^2\\) value is a measure of how well the line of best fit captures the relationship between the independent and dependent variable. The \\(R^2\\) value ranges from 0 to 1, where a value of 1 indicates that the line of best fit perfectly captures the relationship between the variables, and a value of 0 indicates that the line of best fit does not capture any of the relationship between the variables. We will calculate the \\(R^2\\) value using the following code:\n\n\nCode\nss_total = np.sum((y - np.mean(y))**2)\nss_residual = np.sum((y - y_pred)**2)\nr2 = 1 - (ss_residual / ss_total)\nprint(r2)\n\n\n0.4734474918071989\n\n\nThe \\(R^2\\) value for this model is approximately 0.4734. We interpret this as the line of best fit explains about 47% of the variance in median house value between median income and median house value. This shows there is still a lot of variability in the data. A \\(R^2\\) value of 0.4734 is not very good, but it is not terrible either.\n\n\n\nConclusion\nIn this tutorial, it was demonstrated how to build a simple linear regression model in Python. This can be easily applied to any dataset that has a somewhat linear relationship between the independent and dependent variables. Now that you have a basic understanding of how to build the model, try and find a dataset that you are interested in and see if you can build a linear regression model to make predictions. While it may have once been a complex process, it is now much easier to build a linear regression model with the help of libraries like NumPy and pandas.\n\nNotes\n\nThe dataset used comes from a 1990s census taken in California\nThe dataset caps out at a median house value of $500,000, which is why the y-axis in the scatterplot is limited to 5 (in hundreds of thousands of dollars), likely due to the way the census data was collected."
+  },
+  {
+    "objectID": "projects/final-project.html",
+    "href": "projects/final-project.html",
+    "title": "Final Project",
+    "section": "",
+    "text": "This is coming down the pipeline. Check again later."
+  },
+  {
+    "objectID": "projects/data-acquisition.html",
+    "href": "projects/data-acquisition.html",
+    "title": "Data Acquisition Project",
+    "section": "",
+    "text": "This is coming down the pipeline. Check again later."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Brody Duncan\n\nIntroduction\nI am a university student studying data science. I’m interested in how data, policy, and real‑world decision‑making intersect. I am especially interested in legal analytics, a cross-section between statistics and the legal industry. I plan to attend law school after completing my undergraduate degree.\n\n\nEducation\n\nBrigham Young University\nB.S in Statistics; empahasis in data science\nExpected graduation: April 2027\n\n\n\nExperience\n\nFreshman Mentor for the Office of First Year Experience at BYU\n\nGuide current university freshman their first year and help them understand available resources\n\nPast positions:\n\nCatering staff for BYU dining services\nAssistant supervisor of merchandise at SeaWorld, San Antonio\n\nVolunteer service at a local community food bank\n\n\n\nSkills\n\nProficient in R for data analysis, wrangling, and modeling\nTrained in Python for various basic tasks\nWorking proficiency in Spanish\nCertified in various Microsoft programs (Excel, PowerPoint, Word)\nCertified in Adobe Photoshop and Illustrator\nStrong team player and leader from various job and extracurricular positions\n\n\n\nGet to Know Me\nI come from quite a large family, as I grew up with 5 brothers. All of my free time growing up was spent around my family finding whatever we could to entertain ourselves.\nI really enjoy playing strategy games, especially board games. I am currently engaged and going to get married this June.\n\n\nHeadshot\n\n\n\nHeadshot of Brody Duncan"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "Welcome to my data science portfolio! This site shows my journey learning data science and analytics. Here you’ll find projects that demonstrate what I’ve learned and discovered.\n\n\nThis portfolio shows my work learning data science. Each project includes:\n\nMy code with documentation\nVisualizations I created\nWhat I learned and discovered\n\nI built this site using Quarto and host it on GitHub Pages.\n\n\n\n\nProgramming: Python, Pandas for data analysis\nVisualization: Creating charts with Matplotlib and Seaborn\nData Collection: Getting data from files, websites, and APIs\nAnalysis: Finding patterns and answering questions with data\n\n\n\n\n\n\n\nLearn how I explore datasets to find interesting patterns and answer questions.\n\n\n\nSee how I gather data from different sources and prepare it for analysis.\n\n\n\nSee how I tackle a data science project beginning to end.\n\n\n\nThanks for visiting! Feel free to explore my projects and see what I’m learning."
+  },
+  {
+    "objectID": "index.html#about-this-portfolio",
+    "href": "index.html#about-this-portfolio",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "This portfolio shows my work learning data science. Each project includes:\n\nMy code with documentation\nVisualizations I created\nWhat I learned and discovered\n\nI built this site using Quarto and host it on GitHub Pages."
+  },
+  {
+    "objectID": "index.html#skills-im-learning",
+    "href": "index.html#skills-im-learning",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "Programming: Python, Pandas for data analysis\nVisualization: Creating charts with Matplotlib and Seaborn\nData Collection: Getting data from files, websites, and APIs\nAnalysis: Finding patterns and answering questions with data"
+  },
+  {
+    "objectID": "index.html#my-projects",
+    "href": "index.html#my-projects",
+    "title": "Welcome to My Data Science Portfolio",
+    "section": "",
+    "text": "Learn how I explore datasets to find interesting patterns and answer questions.\n\n\n\nSee how I gather data from different sources and prepare it for analysis.\n\n\n\nSee how I tackle a data science project beginning to end.\n\n\n\nThanks for visiting! Feel free to explore my projects and see what I’m learning."
+  },
+  {
+    "objectID": "projects/eda.html",
+    "href": "projects/eda.html",
+    "title": "EDA Project",
+    "section": "",
+    "text": "This is coming down the pipeline. Check again later."
+  },
+  {
+    "objectID": "projects/index.html",
+    "href": "projects/index.html",
+    "title": "Projects Overview",
+    "section": "",
+    "text": "Description: Pick a dataset and explore it to discover insights and answer questions.\n\n\n\nDescription: Find an interesting data source, collect the data, and prepare it for analysis.\n\n\n\nDescription: A comprehensive project that shows off my data science skills."
+  },
+  {
+    "objectID": "projects/index.html#all-projects",
+    "href": "projects/index.html#all-projects",
+    "title": "Projects Overview",
+    "section": "",
+    "text": "Description: Pick a dataset and explore it to discover insights and answer questions.\n\n\n\nDescription: Find an interesting data source, collect the data, and prepare it for analysis.\n\n\n\nDescription: A comprehensive project that shows off my data science skills."
+  }
+]
