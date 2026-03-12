@@ -178,11 +178,13 @@ Cleaning the data is pretty simple because of how well organized the table was. 
 This data and code is very adaptable. Additional years can be included by simply adjusting the parametrers an the range of the `for` loop. Additionally, different key words could be included such as 'constitution', 'liability', or 'affirmed' to build an entirely different dataset. 
 
 ### Full code
-The full code as well as the CSV of the generated dataframe is available on GitHub in this [repository](https://github.com/bdunc521/supreme_court_cases)
+The full code as well as the CSV of the generated dataframe is available on GitHub in this [repository](https://github.com/bdunc521/supreme_court_cases).
 
 #### Additional Links
 - [What is Legal Analytics](https://www.lexisnexis.com/community/insights/legal/b/thought-leadership/posts/what-is-legal-analytics)
+
 - [The Amendments](https://hrlibrary.umn.edu/education/all_amendments_usconst.htm)
+
 - [Common Judicial Opinon Terms](https://www.law.cornell.edu/wex/opinion#:~:text=%E2%80%9CMajority%20opinion%E2%80%9D%20is%20a%20judicial,thoughts%2C%20beliefs%2C%20or%20inferences.)
 
 

@@ -107,10 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
-
-
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
-
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -261,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="goal" class="level3">
 <h3 class="anchored" data-anchor-id="goal">Goal</h3>
 <p>The end goal is to collect the data necessary to create a table like this one:</p>
-<div id="f08a4719" class="cell" data-execution_count="1">
+<div id="cf827a85" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -400,7 +397,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using a <code>for</code> loop, the script iterates through the pages corresponding to Supreme Court terms from <strong>2018 through 2024</strong>. This range was selected to keep the dataset manageable while still providing a substantial number of observations.</p>
 <p>Across these pages, the script identifies and collects all PDF links along with the associated metadata from the table rows.</p>
 <p>This process produces <strong>270 case opinions</strong>.</p>
-<div id="0fff2a47" class="cell" data-execution_count="2">
+<div id="5aa3019d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> term <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">18</span>, <span class="dv">24</span>):</span>
@@ -447,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="extracting-information-from-pdfs" class="level3">
 <h3 class="anchored" data-anchor-id="extracting-information-from-pdfs">Extracting Information from PDFs</h3>
 <p>To go through the PDFs the function <code>PdfReader</code> from the <em>PyPDF2</em> package is needed. It will be combined with the <code>BytesIO</code> function from <em>io</em> to allow PDF’s to be easily analyzed in Python. These two functions turn the PDF into simple text that can be easily analyzed. This code takes awhile to execute especilly with the time delay. As the program goes through the PDF it will take out specific variables and turn them into a dictionary. This specific example focuses on document length and the amount of times specific amendments are mentioned in each opinion.</p>
-<div id="758f49fa" class="cell" data-execution_count="3">
+<div id="650bacd1" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
@@ -590,12 +587,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="full-code" class="level3">
 <h3 class="anchored" data-anchor-id="full-code">Full code</h3>
-<p>The full code as well as the CSV of the generated dataframe is available on GitHub in this <a href="https://github.com/bdunc521/supreme_court_cases">repository</a></p>
+<p>The full code as well as the CSV of the generated dataframe is available on GitHub in this <a href="https://github.com/bdunc521/supreme_court_cases">repository</a>.</p>
 <section id="additional-links" class="level4">
 <h4 class="anchored" data-anchor-id="additional-links">Additional Links</h4>
-<p><a href="https://www.lexisnexis.com/community/insights/legal/b/thought-leadership/posts/what-is-legal-analytics">What is Legal Analytics</a></p>
 <ul>
-<li><a href="https://hrlibrary.umn.edu/education/all_amendments_usconst.htm">The Amendments</a> <a href="https://www.law.cornell.edu/wex/opinion#:~:text=%E2%80%9CMajority%20opinion%E2%80%9D%20is%20a%20judicial,thoughts%2C%20beliefs%2C%20or%20inferences.">Common Judicial Opinon Terms</a></li>
+<li><p><a href="https://www.lexisnexis.com/community/insights/legal/b/thought-leadership/posts/what-is-legal-analytics">What is Legal Analytics</a></p></li>
+<li><p><a href="https://hrlibrary.umn.edu/education/all_amendments_usconst.htm">The Amendments</a></p></li>
+<li><p><a href="https://www.law.cornell.edu/wex/opinion#:~:text=%E2%80%9CMajority%20opinion%E2%80%9D%20is%20a%20judicial,thoughts%2C%20beliefs%2C%20or%20inferences.">Common Judicial Opinon Terms</a></p></li>
 </ul>
 
 
@@ -1236,14 +1234,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>This data and code is very adaptable. Additional years can be included by simply adjusting the parametrers an the range of the <span class="in">`for`</span> loop. Additionally, different key words could be included such as 'constitution', 'liability', or 'affirmed' to build an entirely different dataset. </span>
 <span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="fu">### Full code</span></span>
-<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>The full code as well as the CSV of the generated dataframe is available on GitHub in this <span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/bdunc521/supreme_court_cases)</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>The full code as well as the CSV of the generated dataframe is available on GitHub in this <span class="co">[</span><span class="ot">repository</span><span class="co">](https://github.com/bdunc521/supreme_court_cases)</span>.</span>
 <span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Additional Links</span></span>
 <span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">What is Legal Analytics</span><span class="co">](https://www.lexisnexis.com/community/insights/legal/b/thought-leadership/posts/what-is-legal-analytics)</span></span>
-<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The Amendments</span><span class="co">](https://hrlibrary.umn.edu/education/all_amendments_usconst.htm)</span></span>
-<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Common Judicial Opinon Terms</span><span class="co">](https://www.law.cornell.edu/wex/opinion#:~:text=%E2%80%9CMajority%20opinion%E2%80%9D%20is%20a%20judicial,thoughts%2C%20beliefs%2C%20or%20inferences.)</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">The Amendments</span><span class="co">](https://hrlibrary.umn.edu/education/all_amendments_usconst.htm)</span></span>
 <span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Common Judicial Opinon Terms</span><span class="co">](https://www.law.cornell.edu/wex/opinion#:~:text=%E2%80%9CMajority%20opinion%E2%80%9D%20is%20a%20judicial,thoughts%2C%20beliefs%2C%20or%20inferences.)</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
