@@ -1,0 +1,189 @@
+---
+title: "Supreme Court Opinion Data Aquisition"
+author: "Brody Duncan"
+date: "2026-02-18"
+format:
+  html:
+    code-fold: true
+    toc: true
+---
+### Introduction
+Legal analytics is a relatively new, growing field within the law industry. To oversimply, legal analytics focuses on using previous case, client, and judge data to predict the outcome of a court case and decide whether it is worth taking it to trial. Rather than focusing only on predicting case outcomes, I wanted to investigate a different question:
+ **How much can we learn about the judges themselves and the cases they take on?** 
+Luckily, the Supreme Court makes all of their data very public. So we'll be relying on different documents that they have put out on their [website](https://www.supremecourt.gov/').
+
+### Ethical Considerations
+To get the go-ahead from the government, we'll check the [robots.txt](https://www.supremecourt.gov/robots.txt) file on the webpage.
+
+To respect these guidelines:
+
+- A **one-second delay** is included between requests.
+- Requests include a **header** identifying the request as coming from a browser.
+
+Following these guidelines ensures that the scraping process is both responsible and compliant with the site's rules.
+
+### Goal
+The end goal is to collect the data necessary to create a table like this one:
+```{python}
+#| echo : false
+import pandas as pd
+df = pd.read_csv('supreme_court_dataset.csv')
+df.head()
+```
+### Data Source
+We'll rely on **opinions of the court** to gain insight and information about the judges. An opinion is a formal document written by a judge at the end of case to explain the reasoning behind a decision. These are posted on the website as **PDFs**. This makes collecting data slightly more complicated, but still manageable.
+
+### Collecting Case Metadata
+The first step in the data acquisition process is identifying all available opinion PDFs. The Supreme Court website provides a table for each term that lists:
+
+- case name  
+- decision date  
+- docket number  
+- justice authoring the opinion  
+- link to the opinion PDF  
+
+Using a `for` loop, the script iterates through the pages corresponding to Supreme Court terms from **2018 through 2024**. This range was selected to keep the dataset manageable while still providing a substantial number of observations.
+
+Across these pages, the script identifies and collects all PDF links along with the associated metadata from the table rows.
+
+This process produces **270 case opinions**.
+```{python}
+#| eval: false
+for term in range(18, 24):
+
+    url = f"{base_url}{term}"
+    print("Scraping:", url)
+
+    r = session.get(url, headers=headers)
+    soup = BeautifulSoup(r.text, "html.parser")
+
+    for link in soup.find_all("a", href=True):
+
+        href = link["href"]
+
+        if href.endswith(".pdf"):
+
+            pdf_url = "https://www.supremecourt.gov" + href
+            row = link.find_parent("tr")
+
+            if row:
+
+                cols = row.find_all("td")
+
+                if len(cols) >= 4:
+
+                    date = cols[1].get_text(strip=True)
+                    docket = cols[2].get_text(strip=True)
+                    case_name = cols[3].get_text(strip=True)
+                    justice = cols[4].get_text(strip=True)
+
+                    cases.append({
+                        "date": date,
+                        "docket": docket,
+                        "case_name": case_name,
+                        "justice": justice,
+                        "pdf_url": pdf_url
+                    })
+
+len(cases)
+cases
+```
+
+### Extracting Information from PDFs
+To go through the PDFs the function `PdfReader` from the *PyPDF2* package is needed. It will be combined with the `BytesIO` function from *io* to allow PDF's to be easily analyzed in Python. These two functions turn the PDF into simple text that can be easily analyzed. This code takes awhile to execute especilly with the time delay.
+As the program goes through the PDF it will take out specific variables and turn them into a dictionary. This specific example focuses on document length and the amount of times specific amendments are mentioned in each opinion.
+```{python}
+#| eval: false
+data = []
+
+for i, case in enumerate(cases):
+
+    pdf_url = case["pdf_url"]
+
+    print(f"Processing {i+1}/{len(cases)}")
+
+    try:
+
+        response = session.get(pdf_url, headers=headers)
+
+        if "application/pdf" not in response.headers.get("Content-Type", ""):
+            print("Skipped:", pdf_url)
+            continue
+
+        reader = PdfReader(BytesIO(response.content))
+
+        text = ""
+        for page in reader.pages:
+            t = page.extract_text()
+            if t:
+                text += t
+
+        word_count = len(text.split())
+        page_count = len(reader.pages)
+        dissent_count = text.lower().count("dissent")
+        concurrence_count = text.lower().count("concur")
+        first_amend_count = text.lower().count("first amendment")
+        fourth_amend_count = text.lower().count("fourth amendment")
+        fifth_amend_count = text.lower().count("fifth amendment")
+        sixth_amend_count = text.lower().count("sixth amendment")
+        eigth_amend_count = text.lower().count("eighth amendment")
+
+        data.append({
+            "date": case["date"],
+            "docket": case["docket"],
+            "case_name": case["case_name"],
+            "justice": case["justice"],
+            "pdf_url": pdf_url,
+            "word_count": word_count,
+            "page_count": page_count,
+            "dissent_mentions": dissent_count,
+            "concurrence_mentions": concurrence_count,
+            "first_amend_mentions": first_amend_count,
+            "fourth_amend_mentions": fourth_amend_count,
+            "fifth_amend_mentions": fifth_amend_count,
+            "sixth_amend_mentions": sixth_amend_count,
+            "eigth_amend_mentions": eigth_amend_count
+        })
+
+        #time.sleep(1)
+
+    except Exception as e:
+        print("Error:", pdf_url)
+        print(e)
+```
+Afterward, the dictionaries are all converted into a DataFrame.
+
+### Final Dataset
+This will result in a DataFrame that contains **270** observations. Each observation represents a court case. For each observation there are 14 variables. All these variables are listed in the table below.
+
+
+| Variable | Type | Description |
+|--------|------|-------------|
+| `date` | Categorical | The date the opinion was released by the Court. |
+| `docket` | Categorical | The official docket number assigned to the case. |
+| `case_name` | Text | The name of the case (typically formatted as *Party v. Party*). |
+| `justice` | Categorical | The justice who authored the majority opinion, or *PER CURIAM* if the opinion was issued by the Court collectively. |
+| `pdf_url` | Identifier | Direct link to the official slip opinion PDF. |
+| `word_count` | Numeric | Total number of words in the opinion text extracted from the PDF. Used as a proxy for opinion length and complexity. |
+| `page_count` | Numeric | Total number of pages in the opinion PDF. |
+| `dissent_mentions` | Numeric | Number of times the word "dissent" appears in the opinion text, indicating references to dissenting opinions. |
+| `concurrence_mentions` | Numeric | Number of occurrences of "concur" or related terms, capturing references to concurring opinions. |
+|`*_amend_mentions` | Numeric | Number of references to a specific constitutional amendment in the opinion text.|
+
+### Data Quality and Cleaning
+The Supreme Court does an incredible job of keeping accurate records in their system. Because of this, there are no missing variables from the table available on the site. All the other variables are dependent on what is found within the PDFs, so they also can't be missing
+Cleaning the data is pretty simple because of how well organized the table was. Besides the intial scraping and labeling columns, no additional data cleaning was needed to create the final dataset.
+
+### Future Extensions
+This data and code is very adaptable. Additional years can be included by simply adjusting the parametrers an the range of the `for` loop. Additionally, different key words could be included such as 'constitution', 'liability', or 'affirmed' to build an entirely different dataset. 
+
+### Full code
+The full code as well as the CSV of the generated dataframe is available on GitHub in this [repository](https://github.com/bdunc521/supreme_court_cases)
+
+#### Additional Links
+- [What is Legal Analytics](https://www.lexisnexis.com/community/insights/legal/b/thought-leadership/posts/what-is-legal-analytics)
+- [The Amendments](https://hrlibrary.umn.edu/education/all_amendments_usconst.htm)
+- [Common Judicial Opinon Terms](https://www.law.cornell.edu/wex/opinion#:~:text=%E2%80%9CMajority%20opinion%E2%80%9D%20is%20a%20judicial,thoughts%2C%20beliefs%2C%20or%20inferences.)
+
+
+

@@ -33,7 +33,7 @@ Learn how I explore datasets to find interesting patterns and answer questions.
 :::
 
 ::: {.g-col-6}
-### [Data Collection Project](projects/data-acquisition.qmd)
+### [Supreme Court Data Aquisition](projects/supreme_court_data_aquisition.qmd)
 See how I gather data from different sources and prepare it for analysis.
 :::
 
