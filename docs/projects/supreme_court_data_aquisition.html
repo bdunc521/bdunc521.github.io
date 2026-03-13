@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Brody Duncan">
-<meta name="dcterms.date" content="2026-02-18">
+<meta name="dcterms.date" content="2026-01-01">
 
 <title>Supreme Court Opinion Data Aquisition – Brody Duncan’s Data Science Portfolio</title>
 <style>
@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 18, 2026</p>
+      <p class="date">January 1, 2026</p>
     </div>
   </div>
   
@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="goal" class="level3">
 <h3 class="anchored" data-anchor-id="goal">Goal</h3>
 <p>The end goal is to collect the data necessary to create a table like this one:</p>
-<div id="cf827a85" class="cell" data-execution_count="1">
+<div id="0db1241e" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -400,7 +400,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using a <code>for</code> loop, the script iterates through the pages corresponding to Supreme Court terms from <strong>2018 through 2024</strong>. This range was selected to keep the dataset manageable while still providing a substantial number of observations.</p>
 <p>Across these pages, the script identifies and collects all PDF links along with the associated metadata from the table rows.</p>
 <p>This process produces <strong>270 case opinions</strong>.</p>
-<div id="5aa3019d" class="cell" data-execution_count="2">
+<div id="a2c176b8" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> term <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">18</span>, <span class="dv">24</span>):</span>
@@ -447,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="extracting-information-from-pdfs" class="level3">
 <h3 class="anchored" data-anchor-id="extracting-information-from-pdfs">Extracting Information from PDFs</h3>
 <p>To go through the PDFs the function <code>PdfReader</code> from the <em>PyPDF2</em> package is needed. It will be combined with the <code>BytesIO</code> function from <em>io</em> to allow PDF’s to be easily analyzed in Python. These two functions turn the PDF into simple text that can be easily analyzed. This code takes awhile to execute especilly with the time delay. As the program goes through the PDF it will take out specific variables and turn them into a dictionary. This specific example focuses on document length and the amount of times specific amendments are mentioned in each opinion.</p>
-<div id="650bacd1" class="cell" data-execution_count="3">
+<div id="8b0f6b41" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> []</span>
@@ -1060,7 +1060,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Supreme Court Opinion Data Aquisition"</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Brody Duncan"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2026-02-18"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2026-03-12"</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
