@@ -6,7 +6,7 @@ title: "Welcome to My Data Science Portfolio"
 
 Welcome to my data science portfolio! This site shows my journey learning data science and analytics. Here you'll find projects that demonstrate what I've learned and discovered.
 
-## 🎓 About This Portfolio
+##  About This Portfolio
 
 This portfolio shows my work learning data science. Each project includes:
 
@@ -16,7 +16,7 @@ This portfolio shows my work learning data science. Each project includes:
 
 I built this site using [Quarto](https://quarto.org/) and host it on [GitHub Pages](https://pages.github.com/).
 
-## 🛠️ Skills I'm Learning
+## Skills I'm Learning
 
 - **Programming**: Python, Pandas for data analysis
 - **Visualization**: Creating charts with Matplotlib and Seaborn
@@ -28,22 +28,12 @@ I built this site using [Quarto](https://quarto.org/) and host it on [GitHub Pag
 ::: {.grid}
 
 ::: {.g-col-6}
-### [Data Exploration Project](projects/eda.qmd)
-Learn how I explore datasets to find interesting patterns and answer questions.
-:::
-
-::: {.g-col-6}
 ### [Supreme Court Data Aquisition](projects/supreme_court_data_aquisition.qmd)
 See how I gather data from different sources and prepare it for analysis.
 :::
 
 ::: {.g-col-6}
 ### [Linear Regression Tutorial](projects/linear_regression_tutorial.qmd)
-See how I tackle a data science project beginning to end.
-:::
-
-::: {.g-col-6}
-### [Final Project](projects/final-project.qmd)
 See how I tackle a data science project beginning to end.
 :::
 

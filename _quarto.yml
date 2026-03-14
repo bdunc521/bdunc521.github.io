@@ -18,27 +18,21 @@ website:
           - text: "All Projects"
             href: projects/index.md
           - text: "---"
-          - text: "Exploratory Data Analysis"
-            href: projects/eda.qmd
           - text: "Supreme Court Data Aquisition"
             href: projects/supreme_court_data_aquisition.qmd
-          - text: "Final Project"
-            href: projects/final-project.qmd
           - text: "Linear Regression Tutorial"
             href: projects/linear_regression_tutorial.qmd
     right:
       - icon: github
-        href: https://github.com/your-username
+        href: https://github.com/bdunc521
       - icon: linkedin
-        href: https://linkedin.com/in/your-profile
+        href: https://www.linkedin.com/in/brody-duncan-89a220211/
 
   sidebar:
     - title: "Projects"
       contents:
         - projects/index.md
-        - projects/eda.qmd
         - projects/data-acquisition.qmd
-        - projects/final-project.qmd
         - projects/linear_regression_tutorial.qmd
 
 execute:

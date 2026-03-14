@@ -9,7 +9,7 @@ I am a university student studying data science. I’m interested in how data, p
 ### Education
 - Brigham Young University
 - B.S in Statistics; empahasis in data science
-- Expected graduation: April 2027
+- Expected graduation: December 2027
 
 ### Experience
 - **Freshman Mentor** for the Office of First Year Experience at BYU
@@ -17,7 +17,9 @@ I am a university student studying data science. I’m interested in how data, p
 - **Past positions:** 
     - Catering staff for BYU dining services
     - Assistant supervisor of merchandise at SeaWorld, San Antonio
-- Volunteer service at a local community food bank
+- **Volunteer**
+    - Volunteer service at a local community food bank
+    - 2 years of volunteer work in Colombia
 
 
 ### Skills
